@@ -14,13 +14,15 @@
                         </div>
                     @endif
 
-                    <form action="" method="post" class="max-w-lg">
+                    <form action="{{ route('schedule.store') }}" method="post" class="max-w-lg">
                         @csrf
                         <div class="space-y-6">
                             <div>
                                 <label class="text-sm">Select type of class</label>
                                 <select name="class_type_id" class="block mt-2 w-full border-gray-300 focus:ring-0 focus:border-gray-500">
-                                    
+                                    @foreach ($classTypes as $classType)
+                                        <option value="{{ $classType->id }}">{{ $classType->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="flex gap-6">
@@ -41,10 +43,9 @@
                                         <option value="20:00:00">8 pm</option>
                                     </select>
                                 </div>
-                            </div>
-                            
-                            <div>
-                               
+                                <div>
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
                             </div>
                         </div>
                     </form>

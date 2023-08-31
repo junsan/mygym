@@ -22,8 +22,6 @@ Auth::routes();
 
 Route::get('/home', DashboardController::class)->middleware('auth')->name('dashboard');
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/admin/dashboard', function() {
     return view('admin.dashboard');
 })->middleware(['auth', 'role:admin'])->name('admin.dashboard');

@@ -9,6 +9,8 @@ class ScheduledClass extends Model
 {
     use HasFactory;
 
+    protected $guarded = null;
+
     public function instructor() {
         return $this->belongsTo(User::class, 'instructor_id');
     }
