@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ScheduledClassController;
+use App\Http\Controllers\BookingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
