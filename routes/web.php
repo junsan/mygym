@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', DashboardController::class)->middleware('auth')->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->middleware('auth')->name('dashboard');
 
 Route::get('/admin/dashboard', function() {
     return view('admin.dashboard');
