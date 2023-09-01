@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\ScheduledClass;
 
 class User extends Authenticatable
 {
@@ -46,5 +45,9 @@ class User extends Authenticatable
 
     public function scheduledClasses() {
         return $this->hasMany(ScheduledClass::class, 'instructor_id');
+    }
+
+    public function bookings() {
+        return $this->belongsToMany(ScheduledClasses::class, 'bookings');
     }
 }
