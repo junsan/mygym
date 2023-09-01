@@ -30,7 +30,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        @can('schedule-class')
+                            <li class="nav-item"><a class="navbar-brand" href="{{ route('schedule.create') }}"  >Schedule a class</a></li>
+                            <li class="nav-item"><a class="navbar-brand" href="{{ route('schedule.index') }}">Upcoming class</a></li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

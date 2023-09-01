@@ -25,11 +25,13 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <br>
                             <div class="flex gap-6">
                                 <div class="flex-1">
                                     <label class="text-sm">Date</label>
                                     <input type="date" name="date" class="block mt-2 w-full border-gray-300 focus:ring-0 focus:border-gray-500" min="{{ date('Y-m-d', strtotime('tomorrow')) }}">
                                 </div>
+                                <br>
                                 <div class="flex-1">
                                     <label class="text-sm">Time</label>
                                     <select type="time" name="time" class="block mt-2 w-full border-gray-300 focus:ring-0 focus:border-gray-500">
@@ -43,6 +45,7 @@
                                         <option value="20:00:00">8 pm</option>
                                     </select>
                                 </div>
+                                <br>
                                 <div>
                                     <button class="btn btn-primary" type="submit">Submit</button>
                                 </div>
