@@ -29,8 +29,9 @@
                             </div>
                         </div>
                         <div class="mt-1 text-right">
-                            <form method="post" action="{{ route('booking.destroy') }}">
+                            <form method="post" action="{{ route('booking.store') }}">
                                 @csrf
+                                <input type="hidden" name="scheduled_class_id" value="{{ $class->id }}">
                                 <button btn="btn btn-danger" class="px-3 py-1">Book</button>
                             </form>
                         </div>

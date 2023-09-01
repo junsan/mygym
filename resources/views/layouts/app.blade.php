@@ -34,6 +34,10 @@
                             <li class="nav-item"><a class="navbar-brand" href="{{ route('schedule.create') }}"  >Schedule a class</a></li>
                             <li class="nav-item"><a class="navbar-brand" href="{{ route('schedule.index') }}">Upcoming class</a></li>
                         @endcan
+                        @can('book-class')
+                            <li class="nav-item"><a class="navbar-brand" href="{{ route('booking.create') }}"  >Book a class</a></li>
+                            <li class="nav-item"><a class="navbar-brand" href="{{ route('booking.index') }}">Upcoming class</a></li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
