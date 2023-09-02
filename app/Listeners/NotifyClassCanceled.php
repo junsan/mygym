@@ -8,6 +8,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ClassCanceledMail;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CanceledClassNotification;
+
 
 class NotifyClassCanceled
 {
@@ -25,16 +28,19 @@ class NotifyClassCanceled
     public function handle(ClassCanceled $event): void
     {
         $scheduledClass = $event->scheduledClass;
-        $members = $scheduledClass->members();
+        $members = $scheduledClass->members()->get();
 
         $className = $scheduledClass->classType->name;
         $classSchedule = $scheduledClass->date_time;
+        $instructor = auth()->user()->name;
 
-        $details = compact('className', 'classSchedule');
+        $details = compact('className', 'classSchedule', 'instructor');
 
-        $members->each(function($user) use ($details) {
-            Mail::to($user)->send(new ClassCanceledMail($details));
-        });
+        Notification::send($members, new CanceledClassNotification($details));
+
+        // $members->each(function($user) use ($details) {
+        //     Mail::to($user)->send(new ClassCanceledMail($details));
+        // });
 
         //Log::info($scheduledClass);
     }
