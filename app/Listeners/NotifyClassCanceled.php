@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ClassCanceledMail;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CanceledClassNotification;
-
+use App\Jobs\NotifyClassCanceledJob;
 
 class NotifyClassCanceled
 {
@@ -36,7 +36,9 @@ class NotifyClassCanceled
 
         $details = compact('className', 'classSchedule', 'instructor');
 
-        Notification::send($members, new CanceledClassNotification($details));
+        NotifyClassCanceledJob::dispatch($members, $details);
+        
+        //Notification::send($members, new CanceledClassNotification($details));
 
         // $members->each(function($user) use ($details) {
         //     Mail::to($user)->send(new ClassCanceledMail($details));
