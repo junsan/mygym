@@ -70,4 +70,24 @@ class InstructorTest extends TestCase
 
         $response->assertRedirectToRoute('schedule.index');
     }
+
+    public function test_instructor_cannot_cancel_class_less_than_two_hours_before() {
+        $user = User::where('role', 'instructor')->first();
+
+        $scheduledClass = ScheduledClass::create([
+            'instructor_id' => $user->id,
+            'class_type_id' => ClassType::first()->id,
+            'date_time' => now()->addHours(1)->minutes(35)->seconds(0)
+        ]);
+
+        $response = $this->actingAs($user)->get('instructor/schedule');
+
+        $response->assertDontSeeText('Cancel');
+
+        $response = $this->actingAs($user)->delete('instructor/schedule/'.$scheduledClass->id);
+
+        $this->assertDatabaseHas('scheduled_classes', [
+            'id' => $scheduledClass->id
+        ]);
+    }
 }
